@@ -44,9 +44,9 @@ function serializeFeature(feature, colors) {
     children.forEach(ce => {
         if (ce[0].length)
             nodes += "\r\n" + ce[0];
+        edges += (edges ? "\r\n" : "") + ce[2];
         if (ce[1].length)
             edges += (edges ? "\r\n" : "") + ce[1];
-        edges += (edges ? "\r\n" : "") + ce[2];
     });
     return [nodes, edges, ];
 }

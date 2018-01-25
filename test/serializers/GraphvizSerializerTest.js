@@ -71,3 +71,29 @@ tape("GraphvizSerializer serializes exclude edges", test => {
     test.equals(result, 'digraph G {\r\ncore\r\nchild1\r\ncore->child1[label="<<exclude>>";style="dashed";arrowtail="normal";dir="both"]\r\ncore->child1[arrowhead="odot"]\r\n}');
     test.end();
 });
+
+tape("GraphvizSerializer serializes nested children", test => {
+    var model = new Model("core");
+    model.addFeature("core", "child1", "optional");
+    model.addFeature("child1", "child2", "optional");
+    model.addFeature("child2", "child3", "optional");
+    var uut = new GraphvizSerializer();
+
+    var result = model.serializeModel(uut);
+
+    test.equals(result, 'digraph G {\r\ncore\r\nchild1\r\nchild2\r\nchild3\r\ncore->child1[arrowhead="odot"]\r\nchild1->child2[arrowhead="odot"]\r\nchild2->child3[arrowhead="odot"]\r\n}');
+    test.end();
+});
+
+tape("GraphvizSerializer serializes selected elements in config", test => {
+    var model = new Model("core");
+    model.addFeature("core", "child1", "optional");
+    model.addFeature("core", "child2", "optional");
+    model.selectFeatureNegative("child2");
+    var uut = new GraphvizSerializer();
+
+    var result = model.serializeConfiguration(uut);
+
+    test.equals(result, 'digraph G {\r\ncore[color="green";fontcolor="green"]\r\nchild1\r\nchild2[color="red";fontcolor="red"]\r\ncore->child1[arrowhead="odot"]\r\ncore->child2[arrowhead="odot"]\r\n}');
+    test.end();
+});
