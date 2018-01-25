@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "rollup -c",
     "test": "ava 'test/**/*Test.js'",
-    "coverage": "nyc ava 'test/**/*Test.js' ${AVA_EXTRA}",
+    "coverage": "nyc ava 'test/**/*Test.js' ${AVA_EXTRA} && nyc report --reporter=lcov",
     "checkstyle": "eslint 'src/**/*.js' 'test/**/*.js'"
   },
   "author": "125m125",
