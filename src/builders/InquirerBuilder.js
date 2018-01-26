@@ -131,6 +131,9 @@ InquirerBuilder.prototype.next = function (resolve, reject) {
                     case InquirerBuilder.ADD_EXCLUDE:
                         self.model.addExclude(results[1].feature1, results[1].feature2);
                         return false;
+                    case InquirerBuilder.REN_FEATURE:
+                        self.model.renameFeature(results[1].oldname, results[1].newname);
+                        return false;
                     case InquirerBuilder.EXIT:
                         return true;
                 }
@@ -167,6 +170,12 @@ InquirerBuilder.prototype.inquireOperation = function () {
                 value: InquirerBuilder.ADD_EXCLUDE,
             },
             new inquirer.Separator(),
+            {
+                key: "n",
+                name: "Rename a feature",
+                value: InquirerBuilder.REN_FEATURE,
+            },
+            new inquirer.Separator(),
             /* currently not supported
             {
                 key: "d",
@@ -197,13 +206,15 @@ InquirerBuilder.prototype.inquireOperation = function () {
 
 InquirerBuilder.prototype.inquireDetails = function (result) {
     switch (result.operation) {
-        case 0:
+        case InquirerBuilder.ADD_FEATURE:
             return inquirer.prompt([this.inquireName("featureName", "new feature"), this.inquireFeature("parentName", "parent feature"), this.inquireChildGroupType("groupType"), ]);
-        case 1:
+        case InquirerBuilder.ADD_REQUIRE:
             return inquirer.prompt([this.inquireFeature("source", "source feature"), this.inquireFeature("target", "target feature"), ]);
-        case 2:
+        case InquirerBuilder.ADD_EXCLUDE:
             return inquirer.prompt([this.inquireFeature("feature1", "first feature"), this.inquireFeature("feature2", "second feature"), ]);
-        case 6:
+        case InquirerBuilder.REN_FEATURE:
+            return inquirer.prompt([this.inquireFeature("oldname", "feature to rename"), this.inquireName("newname", "feature"), ]);
+        case InquirerBuilder.EXIT:
             return new Promise(res => res());
     }
 };
@@ -211,6 +222,7 @@ InquirerBuilder.prototype.inquireDetails = function (result) {
 InquirerBuilder.ADD_FEATURE = 0;
 InquirerBuilder.ADD_REQUIRE = 1;
 InquirerBuilder.ADD_EXCLUDE = 2;
+InquirerBuilder.REN_FEATURE = 7;
 InquirerBuilder.DEL_FEATURE = 3;
 InquirerBuilder.DEL_REQUIRE = 4;
 InquirerBuilder.DEL_EXCLUDE = 5;
