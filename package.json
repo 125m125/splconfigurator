@@ -1,6 +1,6 @@
 {
   "name": "splconfigurator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "target/splconfigurator.cjs.js",
   "module": "target/splconfigurator.es.js",
   "jsnext:main": "target/splconfigurator.es.js",
@@ -24,7 +24,7 @@
     "eslint": "4.16.0",
     "nyc": "11.4.1",
     "rollup": "0.55.1",
-    "rollup-plugin-spl": "0.0.3",
+    "rollup-plugin-spl": "0.0.4",
     "sinon": "4.2.2"
   },
   "directories": {
