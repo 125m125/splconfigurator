@@ -65,3 +65,47 @@ ava("renaming a feature keep the structure", test => {
     test.is(require.features[1], feature);
     test.is(feature.crossTreeConstraints[0], require);
 });
+
+ava("moving the root is not possible", t => {
+    var uut = new Model("core");
+    var feature = uut.addFeature("core", "child", "optional");
+
+    t.throws(() => uut.moveFeature("core", "child", "optional"));
+
+    t.is(feature.parent, uut.root);
+});
+
+ava("moving a feature to a sibling is possible", t => {
+    var uut = new Model("core");
+    var feature = uut.addFeature("core", "child1", "optional");
+    var feature2 = uut.addFeature("core", "child2", "optional");
+
+    uut.moveFeature("child1", "child2", "optional");
+
+    t.is(feature.parent, feature2);
+    t.is(feature2.children[0].features[0], feature);
+});
+
+ava("moving a feature to itself is not possible", t => {
+    var uut = new Model("core");
+    var feature = uut.addFeature("core", "child1", "optional");
+    var feature2 = uut.addFeature("core", "child2", "optional");
+
+    t.throws(() => uut.moveFeature("child1", "child1", "optional"));
+
+    t.is(uut.root.children[0].features[0], feature);
+    t.is(uut.root.children[0].features[1], feature2);
+});
+
+ava("moving a feature to its own child is not possible", t => {
+    var uut = new Model("core");
+    var feature = uut.addFeature("core", "child1", "optional");
+    var feature2 = uut.addFeature("child1", "child2", "optional");
+    var feature3 = uut.addFeature("child2", "child3", "optional");
+
+    t.throws(() => uut.moveFeature("child1", "child3", "optional"));
+
+    t.is(uut.root.children[0].features[0], feature);
+    t.is(feature.children[0].features[0], feature2);
+    t.is(feature2.children[0].features[0], feature3);
+});
