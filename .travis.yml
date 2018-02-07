@@ -9,9 +9,18 @@ env:
     - TEST_SUITE=test
     - TEST_SUITE=checkstyle
 
+before_install:
+  - if [[ `npm -v` != 5.6.0 ]]; then npm i -g npm@5.6.0; fi
+    
 install: 
 - npm install
 - npm install -g codecov
+- npm install -g greenkeeper-lockfile
+
+before_script: greenkeeper-lockfile-update
+
 script:
 - if [ "$TEST_SUITE" == "test" ]; then npm run coverage && codecov; fi
 - if [ "$TEST_SUITE" == "checkstyle" ]; then npm run checkstyle; fi
+
+after_script: greenkeeper-lockfile-upload
