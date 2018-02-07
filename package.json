@@ -13,7 +13,7 @@
     "author": "125m125",
     "license": "MIT",
     "dependencies": {
-        "inquirer": "5.0.1",
+        "inquirer": "5.1.0",
         "inquirer-autocomplete-prompt": "0.12.1",
         "inquirer-path": "1.0.0-beta5"
     },
@@ -22,10 +22,10 @@
         "babel-cli": "6.26.0",
         "babel-plugin-istanbul": "^4.1.5",
         "babel-preset-env": "1.6.1",
-        "eslint": "4.16.0",
+        "eslint": "4.17.0",
         "nyc": "11.4.1",
-        "rollup": "0.55.1",
-        "rollup-plugin-spl": "0.0.4",
+        "rollup": "0.55.3",
+        "rollup-plugin-spl": "0.0.5",
         "sinon": "4.2.2"
     },
     "directories": {
