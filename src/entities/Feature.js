@@ -52,3 +52,17 @@ Feature.prototype.selectNegative = function (reason, callStack, invoker) {
 
     return callStack;
 };
+
+Feature.prototype.hasAncestor = function (feature) {
+    if (!this.parent) {
+        return false;
+    }
+    if (this.parent === feature) {
+        return true;
+    }
+    return this.parent.hasAncestor(feature);
+};
+
+Feature.prototype.hasDecendant = function (feature) {
+    return feature.hasAncestor(this);
+};

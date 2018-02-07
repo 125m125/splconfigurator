@@ -97,6 +97,55 @@ export default function Model(rootName) {
         //? }
     };
 
+    this.moveFeature = function (featureName, newParentName, newType) {
+        if (selectionStarted) {
+            throw "modifications after starting the feature selection are not allowed";
+        }
+        if (featureName === newParentName) {
+            throw "unable to move feature " + featureName + ": a feature can not be its own child";
+        }
+
+        var feature = nameMap[featureName];
+        if (!feature) {
+            throw "unable to move feature " + featureName + ": unknown feature " + featureName;
+        }
+        if (root === feature) {
+            throw "unable to move feature " + featureName + ": the root of a model cannot be moved";
+        }
+
+        var newParent = nameMap[newParentName];
+        if (!newParent) {
+            throw "unable to move feature " + featureName + ": unknown parent " + newParent;
+        }
+        if (!groupTypes[newType]) {
+            throw "unable to move feature " + featureName + ": unknown groupType " + newType;
+        }
+
+        if (feature.hasDecendant(newParent)) {
+            throw "unable to move feature " + featureName + ": the new parent is currently a descendant of this feature";
+        }
+
+        feature.childGroup.features.splice(feature.childGroup.features.indexOf(feature), 1);
+
+        var newGroup = newParent.children.find(cg => cg.type === newType);
+        if (!newGroup) {
+            newGroup = new groupTypes[newType](newParent);
+            newParent.children.push(newGroup);
+        }
+        newGroup.features.push(feature);
+        feature.childGroup = newGroup;
+        feature.parent = newParent;
+
+        //? if(RETURN_INNERTS) {
+        return feature;
+        //? }
+
+        //? if(RETURN_SELF) {
+        // eslint-disable-next-line no-unreachable
+        return this;
+        //? }
+    };
+
     this.addCrossTreeConstraint = function (type, features) {
         switch (type) {
             case "exclude":

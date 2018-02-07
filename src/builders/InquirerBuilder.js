@@ -134,6 +134,9 @@ InquirerBuilder.prototype.next = function (resolve, reject) {
                     case InquirerBuilder.REN_FEATURE:
                         self.model.renameFeature(results[1].oldname, results[1].newname);
                         return false;
+                    case InquirerBuilder.MOV_FEATURE:
+                        self.model.moveFeature(results[1].feature, results[1].parent, results[1].type);
+                        return false;
                     case InquirerBuilder.EXIT:
                         return true;
                 }
@@ -175,6 +178,11 @@ InquirerBuilder.prototype.inquireOperation = function () {
                 name: "Rename a feature",
                 value: InquirerBuilder.REN_FEATURE,
             },
+            {
+                key: "m",
+                name: "Move a feature",
+                value: InquirerBuilder.MOV_FEATURE,
+            },
             new inquirer.Separator(),
             /* currently not supported
             {
@@ -214,6 +222,8 @@ InquirerBuilder.prototype.inquireDetails = function (result) {
             return inquirer.prompt([this.inquireFeature("feature1", "first feature"), this.inquireFeature("feature2", "second feature"), ]);
         case InquirerBuilder.REN_FEATURE:
             return inquirer.prompt([this.inquireFeature("oldname", "feature to rename"), this.inquireName("newname", "feature"), ]);
+        case InquirerBuilder.MOV_FEATURE:
+            return inquirer.prompt([this.inquireFeature("feature", "feature to move"), this.inquireFeature("parent", "new parent"), this.inquireChildGroupType("type"), ]);
         case InquirerBuilder.EXIT:
             return new Promise(res => res());
     }
@@ -223,6 +233,7 @@ InquirerBuilder.ADD_FEATURE = 0;
 InquirerBuilder.ADD_REQUIRE = 1;
 InquirerBuilder.ADD_EXCLUDE = 2;
 InquirerBuilder.REN_FEATURE = 7;
+InquirerBuilder.MOV_FEATURE = 8;
 InquirerBuilder.DEL_FEATURE = 3;
 InquirerBuilder.DEL_REQUIRE = 4;
 InquirerBuilder.DEL_EXCLUDE = 5;
