@@ -1,57 +1,66 @@
 {
-  "name": "splconfigurator",
-  "version": "0.0.3",
-  "main": "target/splconfigurator.cjs.js",
-  "module": "target/splconfigurator.es.js",
-  "jsnext:main": "target/splconfigurator.es.js",
-  "scripts": {
-    "prepare": "rollup -c",
-    "test": "ava 'test/**/*Test.js'",
-    "coverage": "nyc ava 'test/**/*Test.js' ${AVA_EXTRA} &&  nyc report --reporter=lcov",
-    "checkstyle": "eslint 'src/**/*.js' 'test/**/*.js'"
-  },
-  "author": "125m125",
-  "license": "MIT",
-  "dependencies": {
-    "inquirer": "5.0.1",
-    "inquirer-autocomplete-prompt": "0.12.1",
-    "inquirer-path": "1.0.0-beta5"
-  },
-  "devDependencies": {
-    "ava": "0.25.0",
-    "babel-cli": "6.26.0",
-    "babel-preset-env": "1.6.1",
-    "eslint": "4.16.0",
-    "nyc": "11.4.1",
-    "rollup": "0.55.1",
-    "rollup-plugin-spl": "0.0.4",
-    "sinon": "4.2.2"
-  },
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/125m125/splconfigurator.git"
-  },
-  "keywords": [
-    "software-product-line",
-    "spl"
-  ],
-  "bugs": {
-    "url": "https://github.com/125m125/splconfigurator/issues"
-  },
-  "homepage": "https://github.com/125m125/splconfigurator#readme",
-  "description": "",
-  "ava": {
-    "require": "babel-register",
-    "babel": "inherit"
-  },
-  "nyc": {
-    "all": true,
-    "include": [
-      "src/**/*.js"
+    "name": "splconfigurator",
+    "version": "0.0.3",
+    "main": "target/splconfigurator.cjs.js",
+    "module": "target/splconfigurator.es.js",
+    "jsnext:main": "target/splconfigurator.es.js",
+    "scripts": {
+        "prepare": "rollup -c",
+        "test": "ava ",
+        "coverage": "nyc --reporter=lcov --reporter=text ava",
+        "checkstyle": "eslint 'src/**/*.js' 'test/**/*.js'"
+    },
+    "author": "125m125",
+    "license": "MIT",
+    "dependencies": {
+        "inquirer": "5.0.1",
+        "inquirer-autocomplete-prompt": "0.12.1",
+        "inquirer-path": "1.0.0-beta5"
+    },
+    "devDependencies": {
+        "ava": "0.25.0",
+        "babel-cli": "6.26.0",
+        "babel-plugin-istanbul": "^4.1.5",
+        "babel-preset-env": "1.6.1",
+        "eslint": "4.16.0",
+        "nyc": "11.4.1",
+        "rollup": "0.55.1",
+        "rollup-plugin-spl": "0.0.4",
+        "sinon": "4.2.2"
+    },
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/125m125/splconfigurator.git"
+    },
+    "keywords": [
+        "software-product-line",
+        "spl"
     ],
-    "exclude": "src/index.js"
-  }
+    "bugs": {
+        "url": "https://github.com/125m125/splconfigurator/issues"
+    },
+    "homepage": "https://github.com/125m125/splconfigurator#readme",
+    "description": "",
+    "ava": {
+        "files": [
+            "test/**/*Test.js"
+        ],
+        "require": "babel-register",
+        "babel": "inherit"
+    },
+    "nyc": {
+        "all": true,
+        "include": [
+            "src/**/*.js"
+        ],
+        "require": [
+            "babel-register"
+        ],
+        "exclude": "src/index.js",
+        "sourceMap": false,
+        "instrument": false
+    }
 }
