@@ -5,10 +5,15 @@
     "module": "target/splconfigurator.es.js",
     "jsnext:main": "target/splconfigurator.es.js",
     "scripts": {
+        "clean": "rm -rf target/",
         "prepare": "rollup -c",
-        "test": "ava ",
+        "test": "npm run tsc && npm run ava",
         "coverage": "nyc --reporter=lcov --reporter=text ava",
-        "checkstyle": "eslint 'src/**/*.js' 'test/**/*.js'"
+        "checkstyle": "eslint 'src/**/*.js' 'test/**/*.js' && tslint 'src/**/*.ts' 'test/**/*.ts'",
+        "fixstyle": "eslint --fix 'src/**/*.js' 'test/**/*.js' && tslint --fix 'src/**/*.ts' 'test/**/*.ts'",
+        "ava": "ava",
+        "tsc_copyjson": "copyfiles test/**/*.json src/**/*.json target/ts/",
+        "tsc": "tsc && npm run tsc_copyjson"
     },
     "author": "125m125",
     "license": "MIT",
@@ -18,15 +23,20 @@
         "inquirer-path": "1.0.0-beta5"
     },
     "devDependencies": {
+        "@types/core-js": "^0.9.46",
         "ava": "0.25.0",
         "babel-cli": "6.26.0",
         "babel-plugin-istanbul": "^4.1.5",
         "babel-preset-env": "1.6.1",
+        "copyfiles": "^1.2.0",
         "eslint": "4.17.0",
         "nyc": "11.4.1",
         "rollup": "0.55.4",
         "rollup-plugin-spl": "0.0.5",
-        "sinon": "4.2.2"
+        "rollup-plugin-typescript": "^0.8.1",
+        "sinon": "4.2.2",
+        "tslint": "^5.9.1",
+        "typescript": "^2.7.1"
     },
     "directories": {
         "test": "test"
@@ -46,7 +56,7 @@
     "description": "",
     "ava": {
         "files": [
-            "test/**/*Test.js"
+            "target/ts/test/**/*Test.js"
         ],
         "require": "babel-register",
         "babel": "inherit"
