@@ -20,6 +20,8 @@ export default {
                 preference: true,
             },
         }),
-        typescript(),
+        typescript({
+            typescript: require("typescript"),
+        }),
     ],
 };
