@@ -8,7 +8,7 @@
         "clean": "rm -rf target/",
         "prepare": "rollup -c",
         "test": "npm run tsc && npm run ava",
-        "coverage": "nyc --reporter=lcov --reporter=text ava",
+        "coverage": "npm run tsc && nyc --reporter=lcov --reporter=text ava",
         "checkstyle": "eslint 'src/**/*.js' 'test/**/*.js' && tslint 'src/**/*.ts' 'test/**/*.ts'",
         "fixstyle": "eslint --fix 'src/**/*.js' 'test/**/*.js' && tslint --fix 'src/**/*.ts' 'test/**/*.ts'",
         "ava": "ava",
