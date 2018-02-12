@@ -64,12 +64,12 @@
     "nyc": {
         "all": true,
         "include": [
-            "src/**/*.js"
+            "target/ts/src/**/*.js"
         ],
         "require": [
             "babel-register"
         ],
-        "exclude": "src/index.js",
+        "exclude": "target/ts/src/index.js",
         "sourceMap": false,
         "instrument": false
     }
