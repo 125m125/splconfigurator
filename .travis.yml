@@ -7,6 +7,7 @@ env:
   - secure: wS/X9L/t2JX+l2mdU8z3h7aAqIVvOCV8DbED9PZNe5A/K7DPwhFgUu4qUeHfqrP5JgQkE/ZlyMN2T6wDJzNMZUbOco3uIBcKy3/TV4nXmcjJXvTGve9CcUhtZc1kZQnemlzn05Kn/Sjg2Z0GxnB05R84n8gukRhEptIze2mgPaKyMNbopkd9Ve6Br0hbQDVxkrrtCn4KV1F9e2rABIylCCy9i1ANViK5giT7gUpy8m4a1ZYC3ouSWCu0AKqR5RB91JdZ6HvIAscYjkgdlqKM16qNfBksVIzgTU6cnU7ftJxUE3R+gLQy/UMX3b2T+9oDeHgSaxK5x5lruRHzYnSVMxPhRKq8yWmDDAQOd2rgswmzBh5H6xGg1wWnkvA2d2JWsp2IcWXEmNACIUAHCsuWyh0iLFnU8qLdHp0sRz0PHEWZN1Nx9jlvEDE5g0OXy8BTDlMNfLAL2IiY3PoCvdmmXouEOmHYowsMfeQpXEnVdeExm/n4IG76P510N2vsjZJjFN5TWhQXy82dMYQvvs4+K/oiGBSA7O5CJqsQ+1jFosI0xKdBDQOcdnwIvoPFOdrf/x42fZAssAd7CKq1G7933ogV7nwJxFN4mp66Vc8FAGWaoCpjax7IKP817S8RCP/XiqufZU3MlwNlXNoH9GqzugvEZ02FEo/h0OTX3dcGagU=
   matrix:
   - TEST_SUITE=test
+  - TEST_SUITE=integration
   - TEST_SUITE=checkstyle
 
 before_install:
@@ -21,6 +22,7 @@ before_script: greenkeeper-lockfile-update
 
 script:
 - if [ "$TEST_SUITE" == "test" ]; then npm run coverage && codecov; fi
+- if [ "$TEST_SUITE" == "integration" ]; then npm run test:integration; fi
 - if [ "$TEST_SUITE" == "checkstyle" ]; then npm run checkstyle; fi
 
 after_script: greenkeeper-lockfile-upload
