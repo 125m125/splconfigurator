@@ -7,8 +7,8 @@
     "scripts": {
         "clean": "rm -rf target/",
         "prepare": "rollup -c",
-        "test": "npm run tsc && npm run ava",
-        "coverage": "npm run tsc && nyc --reporter=lcov --reporter=text ava",
+        "test": "npm run ava",
+        "coverage": "nyc --reporter=lcov --reporter=text ava",
         "checkstyle": "eslint 'src/**/*.js' 'test/**/*.js' && tslint 'src/**/*.ts' 'test/**/*.ts'",
         "fixstyle": "eslint --fix 'src/**/*.js' 'test/**/*.js' && tslint --fix 'src/**/*.ts' 'test/**/*.ts'",
         "ava": "ava",
@@ -62,6 +62,11 @@
     "homepage": "https://github.com/125m125/splconfigurator#readme",
     "description": "",
     "ava": {
+        "require": [
+            ["@babel/register", {
+                "extensions": [".js", ".ts"]
+            }]
+        ],
         "files": [
             "test/**/*Test.js"
         ]
@@ -69,7 +74,7 @@
     "nyc": {
         "all": true,
         "include": [
-            "target/ts/src/**/*.js"
+            "target/ts/src/**/*.[jt]s"
         ],
         "require": [
             "@babel/register"
