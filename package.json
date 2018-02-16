@@ -63,9 +63,7 @@
     "description": "",
     "ava": {
         "require": [
-            ["@babel/register", {
-                "extensions": [".js", ".ts"]
-            }]
+            "./test/testUtil/babeltsregister"
         ],
         "files": [
             "test/**/*Test.js"
@@ -74,12 +72,12 @@
     "nyc": {
         "all": true,
         "include": [
-            "target/ts/src/**/*.[jt]s"
+            "src/**/*.[jt]s"
         ],
         "require": [
             "@babel/register"
         ],
-        "exclude": "target/ts/src/index.js",
+        "exclude": "src/index.js",
         "sourceMap": false,
         "instrument": false
     }
