@@ -36,14 +36,14 @@
         "ava": "1.0.0-beta.2",
         "babel-plugin-istanbul": "4.1.5",
         "copyfiles": "1.2.0",
-        "eslint": "4.17.0",
+        "eslint": "4.18.1",
         "nyc": "11.5.0",
-        "rollup": "0.56.0",
+        "rollup": "0.56.2",
         "rollup-plugin-spl": "0.0.5",
         "rollup-plugin-typescript": "0.8.1",
-        "sinon": "4.3.0",
+        "sinon": "4.4.0",
         "tslint": "5.9.1",
-        "typescript": "2.7.1"
+        "typescript": "2.7.2"
     },
     "directories": {
         "test": "test"
