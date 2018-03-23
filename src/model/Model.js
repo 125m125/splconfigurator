@@ -30,28 +30,28 @@ export default function Model(rootName) {
     this.changes = changes;
     //? }
 
-    this.selectionStarted = function () {
+    this.selectionStarted = function() {
         return selectionStarted;
     };
 
-    this.getFeaturenames = function () {
+    this.getFeaturenames = function() {
         return features.map(f => f.name);
     };
 
-    this.addFeature = function (parentName, childName, groupType) {
+    this.addFeature = function(parentName, childName, groupType) {
         if (selectionStarted) {
-            throw "modifications after starting the feature selection are not allowed";
+            throw new Error("modifications after starting the feature selection are not allowed");
         }
 
         var parent = nameMap[parentName];
         if (!parent) {
-            throw "unable to add feature " + childName + ": unknown parent " + parentName;
+            throw new Error("unable to add feature " + childName + ": unknown parent " + parentName);
         }
         if (nameMap[childName]) {
-            throw "unable to add feature " + childName + ": feature with this name already exists";
+            throw new Error("unable to add feature " + childName + ": feature with this name already exists");
         }
         if (!groupTypes[groupType]) {
-            throw "unable to add feature " + childName + ": unknown groupType " + groupType;
+            throw new Error("unable to add feature " + childName + ": unknown groupType " + groupType);
         }
         var group = parent.children.find(cg => cg.type === groupType);
         if (!group) {
@@ -74,13 +74,13 @@ export default function Model(rootName) {
         //? }
     };
 
-    this.renameFeature = function (oldname, newname) {
+    this.renameFeature = function(oldname, newname) {
         var feature = nameMap[oldname];
         if (!feature) {
-            throw "unable to rename feature: unknown feature " + oldname;
+            throw new Error("unable to rename feature: unknown feature " + oldname);
         }
         if (nameMap[newname]) {
-            throw "unable to rename feature: a feature with name " + newname + " already exists";
+            throw new Error("unable to rename feature: a feature with name " + newname + " already exists");
         }
 
         feature.name = newname;
@@ -97,32 +97,32 @@ export default function Model(rootName) {
         //? }
     };
 
-    this.moveFeature = function (featureName, newParentName, newType) {
+    this.moveFeature = function(featureName, newParentName, newType) {
         if (selectionStarted) {
-            throw "modifications after starting the feature selection are not allowed";
+            throw new Error("modifications after starting the feature selection are not allowed");
         }
         if (featureName === newParentName) {
-            throw "unable to move feature " + featureName + ": a feature can not be its own child";
+            throw new Error("unable to move feature " + featureName + ": a feature can not be its own child");
         }
 
         var feature = nameMap[featureName];
         if (!feature) {
-            throw "unable to move feature " + featureName + ": unknown feature " + featureName;
+            throw new Error("unable to move feature " + featureName + ": unknown feature " + featureName);
         }
         if (root === feature) {
-            throw "unable to move feature " + featureName + ": the root of a model cannot be moved";
+            throw new Error("unable to move feature " + featureName + ": the root of a model cannot be moved");
         }
 
         var newParent = nameMap[newParentName];
         if (!newParent) {
-            throw "unable to move feature " + featureName + ": unknown parent " + newParent;
+            throw new Error("unable to move feature " + featureName + ": unknown parent " + newParent);
         }
         if (!groupTypes[newType]) {
-            throw "unable to move feature " + featureName + ": unknown groupType " + newType;
+            throw new Error("unable to move feature " + featureName + ": unknown groupType " + newType);
         }
 
         if (feature.hasDecendant(newParent)) {
-            throw "unable to move feature " + featureName + ": the new parent is currently a descendant of this feature";
+            throw new Error("unable to move feature " + featureName + ": the new parent is currently a descendant of this feature");
         }
 
         feature.childGroup.features.splice(feature.childGroup.features.indexOf(feature), 1);
@@ -146,29 +146,29 @@ export default function Model(rootName) {
         //? }
     };
 
-    this.addCrossTreeConstraint = function (type, features) {
+    this.addCrossTreeConstraint = function(type, features) {
         switch (type) {
             case "exclude":
                 return this.addExclude(features[0], features[1]);
             case "require":
                 return this.addRequire(features[0], features[1]);
             default:
-                throw "unable to add constraint of unknown type " + type;
+                throw new Error("unable to add constraint of unknown type " + type);
         }
     };
 
-    this.addExclude = function (feature1Name, feature2Name) {
+    this.addExclude = function(feature1Name, feature2Name) {
         if (selectionStarted) {
-            throw "modifications after starting the feature selection are not allowed";
+            throw new Error("modifications after starting the feature selection are not allowed");
         }
 
         var feature1 = nameMap[feature1Name];
         if (!feature1) {
-            throw "unable to add exclude constraint: unknown feature " + feature1Name;
+            throw new Error("unable to add exclude constraint: unknown feature " + feature1Name);
         }
         var feature2 = nameMap[feature2Name];
         if (!feature2) {
-            throw "unable to add exclude constraint: unknown feature " + feature2Name;
+            throw new Error("unable to add exclude constraint: unknown feature " + feature2Name);
         }
         var constraint = new ExcludeConstraint(feature1, feature2);
         feature1.crossTreeConstraints.push(constraint);
@@ -184,18 +184,18 @@ export default function Model(rootName) {
         //? }
     };
 
-    this.addRequire = function (feature1Name, feature2Name) {
+    this.addRequire = function(feature1Name, feature2Name) {
         if (selectionStarted) {
-            throw "modifications after starting the feature selection are not allowed";
+            throw new Error("modifications after starting the feature selection are not allowed");
         }
 
         var feature1 = nameMap[feature1Name];
         if (!feature1) {
-            throw "unable to add require constraint: unknown feature " + feature1Name;
+            throw new Error("unable to add require constraint: unknown feature " + feature1Name);
         }
         var feature2 = nameMap[feature2Name];
         if (!feature2) {
-            throw "unable to add require constraint: unknown feature " + feature2Name;
+            throw new Error("unable to add require constraint: unknown feature " + feature2Name);
         }
 
         var constraint = new RequireConstraint(feature1, feature2);
@@ -212,34 +212,34 @@ export default function Model(rootName) {
         //? }
     };
 
-    this.selectFeaturePositive = function (featurename) {
+    this.selectFeaturePositive = function(featurename) {
         return this.selectFeature(featurename, true);
     };
 
-    this.selectFeatureNegative = function (featurename) {
+    this.selectFeatureNegative = function(featurename) {
         return this.selectFeature(featurename, false);
     };
 
-    this.selectionOf = function (featurename) {
+    this.selectionOf = function(featurename) {
         var feature = nameMap[featurename];
         if (!feature) {
-            throw "unknown feature " + featurename;
+            throw new Error("unknown feature " + featurename);
         }
         return feature.selection;
     };
 
-    this.startSelection = function () {
+    this.startSelection = function() {
         if (!selectionStarted) {
             selectionStarted = true;
             this.selectFeature(root.name, "root feature has to be selected");
         }
     };
 
-    this.selectFeature = function (featurename, type, reason) {
+    this.selectFeature = function(featurename, type, reason) {
         this.startSelection();
         var feature = nameMap[featurename];
         if (!feature) {
-            throw "unable to select feature: unknown feature " + featurename;
+            throw new Error("unable to select feature: unknown feature " + featurename);
         }
         try {
             var result;
@@ -264,7 +264,7 @@ export default function Model(rootName) {
                 throw e;
                 //? } else {
                 // eslint-disable-next-line no-unreachable
-                throw "selection of feature failed: " + e.reason + ": " + e.name;
+                throw new Error("selection of feature failed: " + e.reason + ": " + e.name);
                 //? }
             } else {
                 throw e;
@@ -272,20 +272,20 @@ export default function Model(rootName) {
         }
     };
 
-    this.serializeModel = function (serializer, options) {
+    this.serializeModel = function(serializer, options) {
         return serializer.serializeModel(root, options);
     };
 
-    this.serializeConfiguration = function (serializer, options) {
+    this.serializeConfiguration = function(serializer, options) {
         return serializer.serializeConfiguration(root, options);
     };
 
-    this.deserializeConfiguration = function (serializer, configuration, options) {
+    this.deserializeConfiguration = function(serializer, configuration, options) {
         return serializer.deserializeConfiguration(this, configuration, options);
     };
 
-    this.revertLastSelection = function () {
-        if (!changes.length) throw "nothing to revert";
+    this.revertLastSelection = function() {
+        if (!changes.length) throw new Error("nothing to revert");
         var lastChange = changes.pop();
         lastChange.revert();
         if (!changes.length) selectionStarted = false;

@@ -5,12 +5,12 @@ import FeatureSelectionStack from "./FeatureSelectionStack";
 
 export default class Feature {
     public name: string;
-    public parent: Feature|undefined;
-    public childGroup: ChildGroup|undefined;
+    public parent: Feature | undefined;
+    public childGroup: ChildGroup | undefined;
     public children: ChildGroup[] = [];
     public crossTreeConstraints: CrossTreeConstraint[] = [];
 
-    public selection: boolean|undefined = undefined;
+    public selection: boolean | undefined = undefined;
 
     constructor(name: string, parent?: Feature, childGroup?: ChildGroup) {
         this.name = name;
