@@ -43,7 +43,7 @@
         "rollup-plugin-typescript": "0.8.1",
         "sinon": "4.5.0",
         "tslint": "5.9.1",
-        "typescript": "2.8.1"
+        "typescript": "2.8.3"
     },
     "directories": {
         "test": "test"
