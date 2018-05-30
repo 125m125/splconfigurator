@@ -41,7 +41,7 @@
         "rollup": "0.59.3",
         "rollup-plugin-spl": "0.0.5",
         "rollup-plugin-typescript": "0.8.1",
-        "sinon": "5.0.7",
+        "sinon": "5.0.10",
         "tslint": "5.10.0",
         "typescript": "2.8.3"
     },
