@@ -30,7 +30,7 @@
         "@babel/preset-env": "7.0.0-beta.47",
         "@babel/preset-es2015": "7.0.0-beta.47",
         "@babel/preset-stage-3": "7.0.0-beta.47",
-        "@babel/preset-typescript": "7.0.0-beta.47",
+        "@babel/preset-typescript": "7.0.0-beta.49",
         "@babel/register": "7.0.0-beta.47",
         "@types/core-js": "0.9.46",
         "ava": "1.0.0-beta.4",
