@@ -42,7 +42,7 @@
         "copyfiles": "2.1.0",
         "eslint": "5.9.0",
         "nyc": "13.1.0",
-        "rollup": "0.67.1",
+        "rollup": "0.67.3",
         "rollup-plugin-spl": "0.0.6",
         "rollup-plugin-typescript": "1.0.0",
         "sinon": "7.1.1",
