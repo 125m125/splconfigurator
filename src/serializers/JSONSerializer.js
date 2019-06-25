@@ -65,7 +65,7 @@ function serializeConfigurationR(feature, currentConfig) {
 function deserializeConfiguration(model, json) {
     var stacks = [];
     for (var key in json) {
-        if (!json.hasOwnProperty(key)) continue;
+        if (!Object.prototype.hasOwnProperty.call(json, key)) continue;
         if (json[key]) {
             stacks.push(model.selectFeaturePositive(key));
         } else {
