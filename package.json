@@ -35,7 +35,7 @@
         "@babel/preset-env": "7.5.4",
         "@babel/preset-typescript": "7.3.3",
         "@babel/register": "7.4.4",
-        "@babel/types": "7.5.0",
+        "@babel/types": "7.5.5",
         "@types/core-js": "2.5.2",
         "ava": "2.2.0",
         "babel-plugin-istanbul": "5.1.4",
