@@ -37,7 +37,7 @@
         "@babel/register": "7.5.5",
         "@babel/types": "7.5.5",
         "@types/core-js": "2.5.2",
-        "ava": "2.2.0",
+        "ava": "2.3.0",
         "babel-plugin-istanbul": "5.2.0",
         "copyfiles": "2.1.1",
         "eslint": "5.16.0",
