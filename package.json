@@ -22,7 +22,7 @@
         "inquirer": "6.4.1",
         "inquirer-autocomplete-prompt": "1.0.1",
         "inquirer-path": "1.0.0-beta5",
-        "rxjs": "6.5.2"
+        "rxjs": "6.5.3"
     },
     "devDependencies": {
         "@babel/cli": "7.5.5",
