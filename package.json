@@ -75,12 +75,11 @@
     },
     "nyc": {
         "all": true,
-        "include": [
-            "src/**/*.[jt]s"
-        ],
+        "extension": [ ".ts", ".js" ],
         "require": [
             "@babel/register"
         ],
+        "include": "src/",
         "exclude": "src/index.js",
         "sourceMap": false,
         "instrument": false
