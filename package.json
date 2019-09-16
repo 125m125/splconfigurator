@@ -41,7 +41,7 @@
         "babel-plugin-istanbul": "5.2.0",
         "copyfiles": "2.1.1",
         "eslint": "6.0.1",
-        "nyc": "13.3.0",
+        "nyc": "14.1.1",
         "rollup": "1.21.4",
         "rollup-plugin-spl": "0.0.6",
         "rollup-plugin-typescript": "1.0.1",
@@ -75,12 +75,11 @@
     },
     "nyc": {
         "all": true,
-        "include": [
-            "src/**/*.[jt]s"
-        ],
+        "extension": [ ".ts", ".js" ],
         "require": [
             "@babel/register"
         ],
+        "include": "src/",
         "exclude": "src/index.js",
         "sourceMap": false,
         "instrument": false
