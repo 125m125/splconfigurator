@@ -40,7 +40,7 @@
         "ava": "2.4.0",
         "babel-plugin-istanbul": "5.2.0",
         "copyfiles": "2.1.1",
-        "eslint": "6.0.1",
+        "eslint": "6.4.0",
         "nyc": "14.1.1",
         "rollup": "1.21.4",
         "rollup-plugin-spl": "0.0.6",
