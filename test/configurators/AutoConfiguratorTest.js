@@ -11,6 +11,8 @@ import complex1Positive from "../resources/complex1Positive.json";
 import complex1Negative from "../resources/complex1Negative.json";
 import trap from "../resources/trap.json";
 import trapSolution from "../resources/trapSolution.json";
+import trapB from "../resources/trapB.json";
+import trapBSolutionPositive from "../resources/trapBSolutionPositive.json";
 import impossible from "../resources/impossible.json";
 
 ava("AutoConfigurator selects root positive with positive preference", test => {
@@ -97,7 +99,7 @@ ava("AutoConfigurator respects featurelist", test => {
     var model = loadModel(complex1);
     var uut = new AutoConfigurator(model, true);
 
-    var result = uut.solve(["optional2", ]);
+    var result = uut.solve(["optional2",]);
 
     test.true(result);
     test.deepEqual(getConfigFromModel(model), {
@@ -118,4 +120,14 @@ ava("AutoConfigurator respects featurelist", test => {
         or2: undefined,
         or3: undefined,
     }, "selections should be equivalent");
+});
+
+ava("AutoConfigurator remembers positive preference after forced negative", test => {
+    var model = loadModel(trapB);
+    var uut = new AutoConfigurator(model, true);
+
+    var result = uut.solve();
+
+    test.true(result);
+    test.deepEqual(getConfigFromModel(model), trapBSolutionPositive, "selections should be equivalent");
 });

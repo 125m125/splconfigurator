@@ -10,19 +10,19 @@ function solve(model, featurenames, index, preference) {
     if (index >= featurenames.length) return true;
     var name = featurenames[index];
     if (typeof model.selectionOf(name) !== "undefined") return solve(model, featurenames, index + 1, preference);
-    var result = trySolve(model, featurenames, index, preference);
+    var result = trySolve(model, featurenames, index, preference, preference);
     if (result) return true;
-    result = trySolve(model, featurenames, index, !preference);
+    result = trySolve(model, featurenames, index, preference, !preference);
     if (!result && initial) {
         model.revertLastSelection();
     }
     return result;
 }
 
-function trySolve(model, featurenames, index, value) {
+function trySolve(model, featurenames, index, preference, value) {
     try {
         model.selectFeature(featurenames[index], value);
-        if (!solve(model, featurenames, index + 1, value)) {
+        if (!solve(model, featurenames, index + 1, preference)) {
             model.revertLastSelection();
             return false;
         }
