@@ -1,6 +1,6 @@
 {
     "name": "splconfigurator",
-    "version": "0.0.3",
+    "version": "1.0.0",
     "main": "target/splconfigurator.cjs.js",
     "module": "target/splconfigurator.es.js",
     "jsnext:main": "target/splconfigurator.es.js",
