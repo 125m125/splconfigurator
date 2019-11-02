@@ -1,6 +1,5 @@
 export {default as Model} from "./model/Model";
 
-//? if (EXPOSE_INNERTS) {
 export {default as Feature} from "./entities/Feature";
 export {default as FeatureError} from "./entities/FeatureError";
 export {default as FeatureSelectionStack} from "./entities/FeatureSelectionStack";
@@ -14,7 +13,6 @@ export {default as ExclusiveChildGroup} from "./entities/childGroups/ExclusiveCh
 export {default as MandatoryChildGroup} from "./entities/childGroups/MandatoryChildGroup";
 export {default as OptionalChildGroup} from "./entities/childGroups/OptionalChildGroup";
 export {default as OrChildGroup} from "./entities/childGroups/OrChildGroup";
-//? }
 
 //? if (CONFIGURATORS) {
 export {default as Configurator} from "./configurators/Configurator";
