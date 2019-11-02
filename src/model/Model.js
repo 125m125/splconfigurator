@@ -17,7 +17,7 @@ var groupTypes = {
 export default function Model(rootName) {
     var root = new Feature(rootName);
     var nameMap = {};
-    var features = [root, ];
+    var features = [root,];
     var selectionStarted = false;
     var changes = [];
 
@@ -273,6 +273,9 @@ export default function Model(rootName) {
     };
 
     this.serializeModel = function(serializer, options) {
+        if (typeof serializer === "function") {
+            return serializer(root, options);
+        }
         return serializer.serializeModel(root, options);
     };
 
