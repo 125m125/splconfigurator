@@ -75,7 +75,10 @@
     },
     "nyc": {
         "all": true,
-        "extension": [ ".ts", ".js" ],
+        "extension": [
+            ".ts",
+            ".js"
+        ],
         "require": [
             "@babel/register"
         ],
