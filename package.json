@@ -33,7 +33,7 @@
         "@babel/plugin-syntax-dynamic-import": "7.7.4",
         "@babel/plugin-syntax-import-meta": "7.7.4",
         "@babel/preset-env": "7.7.6",
-        "@babel/preset-typescript": "7.7.4",
+        "@babel/preset-typescript": "7.7.7",
         "@babel/register": "7.7.4",
         "@babel/types": "7.7.4",
         "@types/core-js": "2.5.2",
