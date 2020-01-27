@@ -39,7 +39,7 @@
         "@types/core-js": "2.5.2",
         "ava": "2.4.0",
         "babel-plugin-istanbul": "5.2.0",
-        "copyfiles": "2.1.1",
+        "copyfiles": "2.2.0",
         "eslint": "6.8.0",
         "nyc": "14.1.1",
         "rollup": "1.29.0",
