@@ -19,7 +19,7 @@
     "author": "125m125",
     "license": "MIT",
     "dependencies": {
-        "inquirer": "6.5.2",
+        "inquirer": "7.3.3",
         "inquirer-autocomplete-prompt": "1.1.0",
         "inquirer-path": "1.0.0-beta5",
         "rxjs": "6.6.3"
